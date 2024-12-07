@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_12_07_170848) do
+ActiveRecord::Schema.define(version: 2024_12_07_170924) do
+
+  create_table "patients", force: :cascade do |t|
+    t.string "rut"
+    t.string "name"
+    t.string "mother_name"
+    t.string "phone_number"
+    t.string "email"
+    t.string "address"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "professionals", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,4 +35,18 @@ ActiveRecord::Schema.define(version: 2024_12_07_170848) do
     t.index ["reset_password_token"], name: "index_professionals_on_reset_password_token", unique: true
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.integer "professional_id", null: false
+    t.integer "patient_id", null: false
+    t.date "date"
+    t.decimal "amount"
+    t.boolean "payment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["patient_id"], name: "index_sessions_on_patient_id"
+    t.index ["professional_id"], name: "index_sessions_on_professional_id"
+  end
+
+  add_foreign_key "sessions", "patients"
+  add_foreign_key "sessions", "professionals"
 end
