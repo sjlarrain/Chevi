@@ -1,4 +1,4 @@
-# app/views/sessions/new.html.erb
+
 <%= form_with model: @session, local: true do |form| %>
     <% if @session.errors.any? %>
       <div id="error_explanation">
@@ -12,22 +12,30 @@
       </div>
     <% end %>
   
+    
+
+  <%= form_with(model: @session, local: true) do |f| %>
     <div class="field">
-      <%= form.label :patient_name %>
-      <%= form.text_field :patient_name %>
-    </div>
+      <%= f.label :patient_rut, "Patient Name" %>
+      <%= f.collection_select :patient_rut, Patient.all, :rut, :name, prompt: "Select a patient" %>
+  </div>
+
   
     <div class="field">
-      <%= form.label :date %>
-      <%= form.date_select :date %>
+      <%= f.label :date %>
+      <%= f.text_field :date, id: "session_date", class: "form-control" %>
     </div>
-  
+
     <div class="field">
       <%= form.label :amount %>
       <%= form.number_field :amount %>
     </div>
-  
+    <% end %>
     <div class="actions">
       <%= form.submit %>
     </div>
   <% end %>
+
+  <div>
+  <%= link_to "Create New Patient", new_patient_path, class: "btn btn-primary" %>
+  </div>

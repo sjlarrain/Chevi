@@ -1,5 +1,7 @@
 /* app/assets/stylesheets/application.css or application.scss */
 
+@import "flatpickr/dist/flatpickr.min.css";
+
 body {
     background-color: red; /* Red background */
     font-family: 'Haido Grotesk', sans-serif; /* Font family */
@@ -30,4 +32,8 @@ body {
       width: 100%;
     }
   }
+
+  /* application.css */
+
+
   

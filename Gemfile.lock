@@ -89,6 +89,7 @@ GEM
       warden (~> 1.2.3)
     erubi (1.13.0)
     ffi (1.17.0)
+    flatpickr (4.6.13.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
@@ -242,6 +243,7 @@ DEPENDENCIES
   byebug
   capybara (>= 3.26)
   devise
+  flatpickr
   jbuilder (~> 2.7)
   listen (~> 3.3)
   puma (~> 5.0)

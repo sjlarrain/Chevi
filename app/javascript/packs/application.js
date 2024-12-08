@@ -11,3 +11,12 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import flatpickr from "flatpickr";
+import "flatpickr/dist/flatpickr.min.css";  // Make sure the CSS is imported
+
+document.addEventListener("turbo:load", () => {
+  flatpickr("#session_date", {
+    dateFormat: "Y-m-d",  // Adjust the format as needed
+  });
+});
