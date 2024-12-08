@@ -20,3 +20,7 @@ document.addEventListener("turbo:load", () => {
     dateFormat: "Y-m-d",  // Adjust the format as needed
   });
 });
+import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/css/bootstrap'
+
+import "controllers"
