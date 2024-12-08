@@ -14,23 +14,27 @@
   
     
 
-  <%= form_with(model: @session, local: true) do |f| %>
     <div class="field">
-      <%= f.label :patient_rut, "Patient Name" %>
-      <%= f.collection_select :patient_rut, Patient.all, :rut, :name, prompt: "Select a patient" %>
+      <%= form.label :patient_rut, "Patient Name" %>
+      <%= form.collection_select :patient_rut, Patient.all, :rut, :name, prompt: "Select a patient" %>
   </div>
 
   
     <div class="field">
-      <%= f.label :date %>
-      <%= f.text_field :date, id: "session_date", class: "form-control" %>
+      <%= form.label :date %>
+      <%= form.text_field :date, id: "session_date", class: "form-control", 
+      data: {
+        controller: "flatpickr",
+        flatpickr_date_format: "Y-m-d",
+        flatpickr_min_date: Time.zone.now
+        } 
+        %>
     </div>
 
     <div class="field">
       <%= form.label :amount %>
       <%= form.number_field :amount %>
     </div>
-    <% end %>
     <div class="actions">
       <%= form.submit %>
     </div>
