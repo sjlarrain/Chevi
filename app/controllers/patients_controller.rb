@@ -1,5 +1,20 @@
 # app/controllers/patients_controller.rb
 class PatientsController < ApplicationController
+    before_action :set_patient, only: [:toggle_active]
+
+    # Toggle active status
+    def toggle_active
+      @patient.update(active: !@patient.active) # Toggle the active status
+      redirect_to my_patients_path, notice: "Patient status updated successfully."
+    end
+
+    private
+
+    def set_patient
+      @patient = Patient.find(params[:id])
+    end
+  
+    
     def new
       @patient = Patient.new
     end

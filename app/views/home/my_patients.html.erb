@@ -1,0 +1,39 @@
+<h1>My Patients</h1>
+<h1>My Patients</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Patient Name</th>
+      <th>RUT</th>
+      <th>Mother's Name</th>
+      <th>Contact</th>
+      <th>Active Status</th> <!-- New column for Active Status -->
+      <th>Action</th> <!-- New column for Toggle Action -->
+    </tr>
+  </thead>
+  <tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.name %></td>
+        <td><%= patient.rut %></td>
+        <td><%= patient.mother_name %></td>
+        <td><%= patient.phone_number %></td>
+        
+        <!-- Display patient's active status -->
+        <td><%= patient.active ? 'Active' : 'Inactive' %></td>
+        
+        <!-- Toggle Active Status Button -->
+        <td>
+          <%= link_to patient.active ? 'Set Inactive' : 'Set Active', 
+                      toggle_active_patient_path(patient), 
+                      method: :patch, 
+                      class: 'button' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= link_to 'Back', home_index_path, class: 'button' %>

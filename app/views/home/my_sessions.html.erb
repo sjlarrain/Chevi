@@ -1,0 +1,24 @@
+<h1>My Sessions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Patient</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Payment Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sessions.each do |session| %>
+      <tr>
+        <td><%= session.patient.name %></td>
+        <td><%= session.date %></td>
+        <td><%= session.amount %></td>
+        <td><%= session.payment ? 'Paid' : 'Not Paid' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', home_index_path, class: 'button' %>

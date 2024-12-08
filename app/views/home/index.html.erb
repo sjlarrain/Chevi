@@ -1,6 +1,9 @@
 
-<p>
-  <%= link_to "Add Session", new_session_path %>
-  <%= link_to "Add Patient", new_patient_path %>
-  <%= link_to "My Sessions", sessions_path %>
+
+<p class="button-group">
+  <%= link_to "Add Session", new_session_path, class: 'button' %>
+  <%= link_to "Add Patient", new_patient_path, class: 'button' %>
+  <%= link_to "My Sessions", home_my_sessions_path, class: 'button' %>
+  <%= link_to "My Patients", home_my_patients_path, class: 'button' %>
 </p>
+

@@ -1,67 +1,156 @@
-/* app/assets/stylesheets/application.css or application.scss */
-
+/* Import Flatpickr styles */
 @import "flatpickr/dist/flatpickr.min.css";
 
+/* General Body Styling */
 body {
-    background-color: red; /* Red background */
-    font-family: 'Haido Grotesk', sans-serif; /* Font family */
-    color: white; /* White text color for contrast */
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    text-align: center;
-  }
-  
-  .container {
-    width: 100%;
-    max-width: 1200px; /* Center the content with a max width */
-    padding: 20px;
-  }
-  
-  /* For mobile screens, center everything */
-  @media (max-width: 768px) {
-    body {
-      flex-direction: column;
-      justify-content: flex-start; /* Stack the content */
-      padding: 20px;
-    }
-    .container {
-      width: 100%;
-    }
-  }
+  background-color: #343a40; /* Dark background for contrast */
+  font-family: 'Haido Grotesk', sans-serif;
+  color: white;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh; /* Full viewport height */
+  text-align: center;
+  flex-direction: column; /* Stack elements vertically */
+}
 
-  /* application.css */
+/* Container Styling */
+.container {
+  width: 100%;
+  max-width: 1200px; /* Center the content with a max width */
+  padding: 20px;
+}
 
-  /* Navbar style*/
+/* Navbar Styles */
+nav {
+  background-color: #007bff; /* Navbar background color */
+  padding: 10px 0; /* Vertical padding */
+  width: 100%;
+  text-align: center;
+}
+
 nav ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Center the navbar items */
+  align-items: center;
 }
 
 nav li {
-  display: inline;
-  margin-right: 15px;
+  display: inline-block; /* Align items horizontally */
+  margin: 0 15px; /* Spacing between links */
 }
 
-nav a {
+nav a, nav button {
   text-decoration: none;
-  color: #333;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px; /* Add padding to buttons */
+  display: inline-block;
+  text-align: center;
 }
 
 nav button {
   background-color: transparent;
-  border: none;
-  color: #333;
+  border: 2px solid white; /* Border for buttons */
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-nav button:hover {
+nav a:hover, nav button:hover {
+  background-color: white;
   color: #007bff;
 }
 
+/* Mobile View Styling (max-width: 768px) */
+@media (max-width: 768px) {
+  body {
+    flex-direction: column; /* Stack elements vertically on mobile */
+    justify-content: flex-start;
+    padding: 20px;
+  }
 
+  .container {
+    width: 100%;
+  }
 
-  
+  nav ul {
+    flex-direction: column; /* Stack navbar items vertically */
+  }
+
+  nav li {
+    margin: 10px 0; /* Spacing between items */
+  }
+
+  nav a, nav button {
+    width: 100%; /* Full width buttons */
+    font-size: 18px; /* Larger text for mobile */
+    padding: 15px; /* More padding for mobile */
+  }
+}
+
+/* PC View (large screens) */
+@media (min-width: 769px) {
+  .container {
+    max-width: 1200px;
+  }
+
+  nav ul {
+    flex-direction: row; /* Horizontal navbar items */
+  }
+
+  nav li {
+    margin: 0 15px; /* Adjust spacing */
+  }
+
+  nav a, nav button {
+    width: auto; /* Button size auto on PC */
+    padding: 10px 20px; /* Standard button size */
+  }
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+/* Button Group Styling */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Spacing between buttons */
+  flex-wrap: wrap; /* Allow buttons to wrap in mobile view */
+  margin-top: 20px; /* Space from top */
+}
+
+/* Individual Button Styling */
+.button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
