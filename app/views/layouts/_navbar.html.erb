@@ -1,0 +1,17 @@
+<!-- app/views/layouts/_navbar.html.erb -->
+<nav>
+  <ul>
+    <!-- Home Index Link -->
+    <li><%= link_to 'Home', home_index_path %></li>
+
+    <!-- Sign Out Link -->
+    <% if professional_signed_in? %> 
+      <li><%= link_to 'Sign Out', destroy_professional_session_path, method: :delete %></li>
+    <% end %>
+
+    <!-- Back Button -->
+    <li>
+      <%= button_to 'Back', home_index_path, method: :get, class: "back-btn" %>
+    </li>
+  </ul>
+</nav>
