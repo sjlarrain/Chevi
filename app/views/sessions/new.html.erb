@@ -15,8 +15,8 @@
     
 
     <div class="field">
-      <%= form.label :patient_rut, "Patient Name" %>
-      <%= form.collection_select :patient_rut, Patient.all, :rut, :name, prompt: "Select a patient" %>
+    <%= form.label :patient_id, "Patient Name" %>
+    <%= form.select :patient_id, Patient.all.pluck(:name, :id), prompt: "Select a patient" %>
   </div>
 
   

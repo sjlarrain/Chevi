@@ -7,10 +7,10 @@ class SessionsController < ApplicationController
     end
   
     def create
-      @session = Session.new(session_params)
-      @session.professional = current_professional
+      @session = current_professional.sessions.build(session_params)
+  
       if @session.save
-        redirect_to root_path, notice: "Session was successfully created."
+        redirect_to home_index_path, notice: "Session created successfully."
       else
         render :new
       end
@@ -22,3 +22,5 @@ class SessionsController < ApplicationController
       params.require(:session).permit(:patient_id, :date, :amount)
     end
   end
+    
+
