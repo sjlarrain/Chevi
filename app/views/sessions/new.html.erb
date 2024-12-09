@@ -16,7 +16,7 @@
 
     <div class="field">
     <%= form.label :patient_id, "Patient Name" %>
-    <%= form.select :patient_rut, Patient.where(active: true).pluck(:name, :rut), prompt: "Select a patient" %>
+    <%= form.select :patient_id, Patient.where(active: true).pluck(:name, :id), prompt: "Select a patient" %>
   </div>
 
   
