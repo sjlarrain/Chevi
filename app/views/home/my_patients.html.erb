@@ -30,6 +30,9 @@
                       method: :patch, 
                       class: 'button' %>
         </td>
+        <td>
+        <%= link_to 'Edit', edit_patient_path(patient), class: "btn btn-primary" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

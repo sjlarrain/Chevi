@@ -1,0 +1,51 @@
+<h1>Edit Patient</h1>
+
+<%= form_with(model: @patient, local: true) do |f| %>
+  <% if @patient.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+      <ul>
+        <% @patient.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :rut %>
+    <%= f.text_field :rut, class: "form-control", readonly: true %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :mother_name %>
+    <%= f.text_field :mother_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone_number %>
+    <%= f.telephone_field :phone_number, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :address %>
+    <%= f.text_field :address, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :active %>
+    <%= f.check_box :active %>
+  </div>
+
+  <%= f.submit "Update Patient", class: "btn btn-success" %>
+<% end %>

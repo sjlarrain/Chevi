@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :professionals
 
   resources :sessions, only: [:new, :create]
-  resources :patients, only: [:new, :create] do
+  resources :patients, only: [:new, :create, :edit, :update] do
     member do
       patch 'toggle_active'
     end

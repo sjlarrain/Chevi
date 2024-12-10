@@ -1,6 +1,7 @@
 # app/controllers/patients_controller.rb
 class PatientsController < ApplicationController
-    before_action :set_patient, only: [:toggle_active]
+  before_action :authenticate_professional!
+  before_action :set_patient, only: [:edit, :update, :toggle_active]
     # Toggle active status
     def toggle_active
       @patient.update(active: !@patient.active) # Toggle the active status
@@ -19,7 +20,18 @@ class PatientsController < ApplicationController
         render :new
       end
     end
-    
+
+    def edit
+    end
+  
+    def update
+      if @patient.update(patient_params)
+        redirect_to home_my_patients_path, notice: "Patient updated successfully."
+      else
+        render :edit, alert: "Error updating patient."
+      end
+    end
+
     private
     
     def patient_params
