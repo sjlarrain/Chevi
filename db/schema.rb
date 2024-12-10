@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_12_09_010540) do
+ActiveRecord::Schema.define(version: 2024_12_10_003606) do
 
   create_table "patients", force: :cascade do |t|
     t.string "rut"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(version: 2024_12_09_010540) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "active", default: true
+  end
+
+  create_table "patients_professionals", id: false, force: :cascade do |t|
+    t.integer "patient_id", null: false
+    t.integer "professional_id", null: false
+    t.index ["patient_id"], name: "index_patients_professionals_on_patient_id"
+    t.index ["professional_id"], name: "index_patients_professionals_on_professional_id"
   end
 
   create_table "professionals", force: :cascade do |t|

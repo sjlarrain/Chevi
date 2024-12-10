@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   
   def my_patients
     # Get all patients for the current professional
-    @patients = Patient.joins(:sessions).where(sessions: { professional_id: current_professional.id }).distinct
+    @patients = current_professional.patients
   end
 
   # My Sessions action

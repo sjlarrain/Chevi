@@ -5,6 +5,6 @@ class Professional < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   has_many :sessions
-  has_many :patients, through: :sessions
+  has_and_belongs_to_many :patients
   
 end
