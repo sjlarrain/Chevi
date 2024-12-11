@@ -15,6 +15,15 @@ class SessionsController < ApplicationController
         render :new
       end
     end
+    
+    def mark_as_paid
+      @session = Session.find(params[:id])
+      if @session.update(payment: true)
+        redirect_to home_my_sessions_path, notice: "Session marked as paid."
+      else
+        redirect_to home_my_sessions_path, alert: "Failed to mark the session as paid."
+      end
+    end
   
     private
   

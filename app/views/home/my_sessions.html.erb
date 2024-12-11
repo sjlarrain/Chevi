@@ -16,6 +16,11 @@
         <td><%= session.date %></td>
         <td><%= session.amount %></td>
         <td><%= session.payment ? 'Paid' : 'Not Paid' %></td>
+        <td>
+          <% unless session.payment %>
+            <%= button_to "Mark as Paid", mark_as_paid_session_path(session), method: :patch, class: "btn btn-success" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
