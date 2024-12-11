@@ -1,52 +1,46 @@
-# app/views/patients/new.html.erb
 <%= form_with model: @patient, local: true do |form| %>
-    <% begin %>
-    <% if @patient.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
-  
-        <ul>
-          <% @patient.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <% rescue NoMethodError %>
-    <p>There was an error loading the patient form.</p>
-    <% end %>
-  
-    <div class="field">
-      <%= form.label :name %>
-      <%= form.text_field :name %>
-    </div>
-  
-    <div class="field">
-      <%= form.label :rut %>
-      <%= form.text_field :rut %>
-    </div>
-  
-    <div class="field">
-      <%= form.label :mother_name %>
-      <%= form.text_field :mother_name %>
-    </div>
-  
-    <div class="field">
-      <%= form.label :contact %>
-      <%= form.text_field :contact %>
-    </div>
-  
-    <div class="field">
-      <%= form.label :email %>
-      <%= form.email_field :email %>
-    </div>
-  
-    <div class="field">
-      <%= form.label :address %>
-      <%= form.text_area :address %>
-    </div>
-  
-    <div class="actions">
-      <%= form.submit %>
+  <% if @patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+      <ul>
+        <% @patient.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
   <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, required: true, pattern: "[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+", title: "Name must contain only letters and spaces" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rut %>
+    <%= form.text_field :rut, required: true, pattern: "^\d{7,8}-[0-9K]$", title: "Please enter a valid RUT (e.g., 12345678-K)" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mother_name %>
+    <%= form.text_field :mother_name, required: true, pattern: "[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+", title: "Mother's name must contain only letters and spaces" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :contact %>
+    <%= form.text_field :phone_number, required: true, pattern: "^[+0-9]{9,13}$", title: "Phone number must be 9-13 digits, with an optional '+' sign" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.email_field :email, required: true, title: "Please enter a valid email" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_area :address, required: true, minlength: 10, title: "Please provide a valid address" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Save Patient" %>
+  </div>
+<% end %>
