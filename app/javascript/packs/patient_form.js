@@ -3,23 +3,27 @@ document.addEventListener("DOMContentLoaded", function() {
     const rutField = document.querySelector("input[name='patient[rut]']");
     if (rutField) {
       rutField.addEventListener('input', function(e) {
-        let rutValue = e.target.value.replace(/[^\dK-]/g, '').toUpperCase(); // Allow numbers, K, and dash
+        let rutValue = e.target.value.replace(/[^\dK]/g, '').toUpperCase(); // Remove non-numeric and non-'K' characters
   
-        // Ensure the dash is added only after the 7th character
-        if (rutValue.length > 7 && rutValue.indexOf('-') === -1) {
-          rutValue = rutValue.substring(0, 7) + '-' + rutValue.substring(7);
+        // Add hyphen only after 8 digits
+        if (rutValue.length > 8) {
+          rutValue = rutValue.substring(0, 8) + '-' + rutValue.substring(8);
         }
   
-        // Validate the RUT
+        // Ensure the value doesn't exceed 10 characters (8 digits + hyphen + 1 verification digit)
+        if (rutValue.length > 10) {
+          rutValue = rutValue.substring(0, 10);
+        }
+  
+        // Validate the RUT after the input is formatted
         if (!validateRut(rutValue)) {
           rutField.setCustomValidity("Invalid RUT. Please enter a valid Chilean RUT.");
-          rutField.classList.add('invalid'); // Add visual feedback for invalid RUT
         } else {
           rutField.setCustomValidity(""); // Reset custom validity if the RUT is valid
-          rutField.classList.remove('invalid'); // Remove visual feedback for valid RUT
         }
   
         e.target.value = rutValue;
+        console.log(e.target.value)
       });
     }
   
@@ -60,8 +64,8 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   
     // Split RUT into digits and verification digit
-    const rutDigits = rut.slice(0, 8);
-    const verificationDigit = rut[8].toUpperCase();
+    const rutDigits = rut.slice(0, 8); // First 8 digits
+    const verificationDigit = rut[8].toUpperCase(); // Last character (either a number or 'K')
   
     // Validate that all characters are numbers (except for the last one, which can be a number or 'K')
     if (!/^\d{8}$/.test(rutDigits) || !/^[0-9K]$/.test(verificationDigit)) {
@@ -83,11 +87,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const calculatedVerificationDigit = 11 - remainder;
   
     // Convert the calculated verification digit to the corresponding character
-    let expectedVerificationDigit = (calculatedVerificationDigit === 11) ? '0' : 
-                                     (calculatedVerificationDigit === 10) ? 'K' : 
-                                     calculatedVerificationDigit.toString();
+    let expectedVerificationDigit;
+    if (calculatedVerificationDigit === 11) {
+      expectedVerificationDigit = '0';
+    } else if (calculatedVerificationDigit === 10) {
+      expectedVerificationDigit = 'K';
+    } else {
+      expectedVerificationDigit = calculatedVerificationDigit.toString();
+    }
   
     // Compare the expected verification digit with the input
+    console.log(verificationDigit === expectedVerificationDigit)
     return verificationDigit === expectedVerificationDigit;
   }
   
