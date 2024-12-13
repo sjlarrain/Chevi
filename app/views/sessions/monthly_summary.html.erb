@@ -1,0 +1,32 @@
+<h2>Summary for <%= Date::MONTHNAMES[params[:month].to_i] %> <%= params[:year] %></h2>
+
+<p><strong>Gross Income:</strong> $<%= number_with_delimiter(@gross_income.to_i, delimiter: ",") %></p>
+<p><strong>Tax Amount (13.75%):</strong> $<%= number_with_delimiter(@tax_amount.to_i, delimiter: ",") %></p>
+<p><strong>Net Income:</strong> $<%= number_with_delimiter(@net_income.to_i, delimiter: ",") %></p>
+
+<%= link_to "Download Excel", monthly_summary_sessions_path(month: params[:month], year: params[:year], format: :xlsx), class: "btn btn-primary" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Patient Name</th>
+      <th>RUT</th>
+      <th>Mother's Email</th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sessions.each do |session| %>
+      <tr>
+        <td><%= session.patient.name %></td>
+        <td><%= session.patient.rut %></td>
+        <td><%= session.patient.email %></td>
+        <td><%= session.date.strftime("%d/%m/%Y") %></td>
+        <td>$<%= number_with_delimiter(session.amount.to_i, delimiter: ",") %></td>
+        <td><%= session.payment ? 'Paid' : 'Pending' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -8,14 +8,19 @@ Rails.application.routes.draw do
     member do
       patch :mark_as_paid
     end
+
+    collection do
+      get :financial_panel
+      get :monthly_summary
+    end
+
   end
   resources :patients, only: [:new, :create, :edit, :update] do
     member do
       patch 'toggle_active'
     end
   end
-  
-  
+    
 
   get 'home/my_patients', to: 'home#my_patients'
   get 'home/my_sessions', to: 'home#my_sessions'

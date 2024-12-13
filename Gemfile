@@ -25,6 +25,9 @@ gem 'devise'
 gem 'pg'
 # This is use for Calendar type form:
 gem 'flatpickr'
+# This is use for downloading excel
+gem 'axlsx_rails'
+
 
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

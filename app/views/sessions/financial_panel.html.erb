@@ -1,0 +1,9 @@
+<h1>Financial Panel</h1>
+<ul>
+  <% @months.each do |m| %>
+    <li>
+      <%= link_to "#{Date::MONTHNAMES[m.month.to_i]} #{m.year.to_i}",
+                  monthly_summary_sessions_path(month: m.month.to_i, year: m.year.to_i) %>
+    </li>
+  <% end %>
+</ul>
