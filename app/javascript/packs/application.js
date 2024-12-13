@@ -24,3 +24,5 @@ import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
 
 import "controllers"
+
+import "./patient_form";  // Import patient form JS

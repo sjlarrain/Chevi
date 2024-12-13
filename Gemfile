@@ -19,9 +19,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
+# For authentification
 gem 'devise'
-
-
+# For host upload
+gem 'pg'
 # This is use for Calendar type form:
 gem 'flatpickr'
 
